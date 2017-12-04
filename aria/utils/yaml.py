@@ -48,3 +48,7 @@ except ImportError:
 
 finally:
     from ruamel import yaml                                                     # pylint: disable=unused-import
+
+
+# Enables support for writing python unicode class with yaml
+yaml.SafeLoader.add_constructor('tag:yaml.org,2002:python/unicode', lambda _, node: node.value)

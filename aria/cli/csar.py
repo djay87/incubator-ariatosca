@@ -77,7 +77,6 @@ def write(service_template_path, destination, logger):
         logger.debug('Writing new metadata file to {0}'.format(META_FILE))
         f.writestr(META_FILE, yaml.dump(metadata, default_flow_style=False))
 
-
 class _CSARReader(object):
 
     def __init__(self, source, destination, logger):
@@ -143,6 +142,7 @@ class _CSARReader(object):
             raise ValueError('Metadata file {0} is missing from the CSAR'.format(csar_metafile))
         self.logger.debug('CSAR metadata file: {0}'.format(csar_metafile))
         self.logger.debug('Attempting to parse CSAR metadata YAML')
+
         with open(csar_metafile) as f:
             self.metadata.update(yaml.load(f, Loader=yaml.SafeLoader))
         self.logger.debug('CSAR metadata:{0}{1}'.format(os.linesep, pprint.pformat(self.metadata)))
